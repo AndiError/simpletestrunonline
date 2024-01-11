@@ -32,12 +32,18 @@ jobs:
 
   notifyTelegram:
     runs-on: ubuntu-latest
+    needs: test
     steps:
-      - name: send custom message
+      - name: Check job status
+        run: echo "Job status ${{ job.status }}
+        id: check_status
+
+      - name: send custom message on failure
+        if: steps.check_status.outputs.job_status == 'failure'
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             The ${{ github.event_name }} event triggered final step.
-            echo This event is a pull request that had an assignee removed.
+            This event is a pull request that had an assignee removed.
