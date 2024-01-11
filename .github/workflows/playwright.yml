@@ -35,7 +35,7 @@ jobs:
     needs: test
     steps:
       - name: send custom message on failure
-        uses: cbrgm/telegram-github-action@v1.0
+        uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
