@@ -44,5 +44,4 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            The ${{ job.status }} event triggered final step.
-            This event is a pull request that had an assignee removed.
+            The job status is " ${{ job.status }} "
