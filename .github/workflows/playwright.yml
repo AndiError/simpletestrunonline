@@ -1,4 +1,5 @@
 name: Playwright Tests
+
 on:
   push:
     branches: [main, master]
@@ -6,6 +7,7 @@ on:
     branches: [main, master]
   schedule:
     - cron: "0 * * * *"
+
 jobs:
   test:
     timeout-minutes: 60
@@ -27,3 +29,15 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+
+  notifyTelegram:
+    runs-on: ubuntu-latest
+    steps:
+      - name: send custom message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            The ${{ github.event_name }} event triggered final step.
+            echo This event is a pull request that had an assignee removed.
