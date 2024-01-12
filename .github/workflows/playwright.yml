@@ -29,13 +29,9 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
-
-  notifyTelegram:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: send custom message on failure
+      - name: send message to Telegram
         uses: appleboy/telegram-action@master
+        if: failure()
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
