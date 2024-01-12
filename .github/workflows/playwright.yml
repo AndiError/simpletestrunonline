@@ -31,7 +31,7 @@ jobs:
           retention-days: 30
       - name: send message to Telegram
         uses: appleboy/telegram-action@master
-        if: failure()
+        if: always()
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
