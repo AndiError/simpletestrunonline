@@ -39,3 +39,4 @@ jobs:
             The job status is " ${{ job.status }} " 
             Created by: ${{github.actor}}
             Commit message: ${{github.event.commits[0].message}}
+            file name: ${{job.name}}
