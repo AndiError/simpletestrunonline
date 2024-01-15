@@ -40,3 +40,4 @@ jobs:
             Pushed by: ${{github.actor}}
             Commit message: ${{github.event.commits[0].message}}
             Workflow: ${{github.workflow}}
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
